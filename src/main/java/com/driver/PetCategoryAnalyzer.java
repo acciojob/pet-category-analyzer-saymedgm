@@ -4,19 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PetCategoryAnalyzer {
-	private Map<String, Pet> pets;
+    private Map<String, Pet> pets;
 
     public PetCategoryAnalyzer() {
-    	// your code goes here
+        this.pets = new HashMap<String, Pet>();
     }
 
     public void addPet(String name, int lifespan, String dietaryNeeds, int maintenanceLevel) {
-    	// your code goes here
+        Pet pet = new Pet(name, lifespan, dietaryNeeds, maintenanceLevel);
+        pets.put(name, pet);
     }
 
     public double calculatePopularityIndex(String petName) {
-    	// your code goes here
+        Pet pet = pets.get(petName);
 
-        return 0.0;
+        if (pet == null) {
+            System.out.println("Pet not found.");
+            return -1;
+        }
+
+        // Advanced mathematical modeling for popularity index calculation
+        double popularityIndex = (pet.getLifespan() * 0.4) + (pet.getMaintenanceLevel() * 0.3) + (pet.getDietaryNeeds().equals("Carnivore") ? 0.3 : 0.2);
+
+        return popularityIndex;
     }
 }
